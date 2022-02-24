@@ -5,7 +5,6 @@ from base_practice.io_ops import IOOps
 from itertools import count
 
 
-
 def main(filename):
     io_ops = IOOps()
     contributors = []
@@ -42,14 +41,14 @@ def main(filename):
         projects.append(proj)
         index_c += 1
 
-    print("parsed")
+    # print("parsed")
 
     plan = []
     end_all_ongoing_projects = -1
     for i in count(0):
-        print(f"day {i}")
+        # print(f"day {i}")
         chosen = next((x for x in projects if x.hire(contributor_by_skills, i)), None)
-        print(chosen)
+        # print(chosen)
         if not chosen:
             if end_all_ongoing_projects < i:
                 break
@@ -59,22 +58,21 @@ def main(filename):
         assert len(chosen.hires) > 0
         end_all_ongoing_projects = max(chosen.end_day, end_all_ongoing_projects)
         plan.append(chosen)
-    
-    print(plan)
+
+    # print(plan)
     # output
     ts = datetime.datetime.now().timestamp()
     io_ops.write_objects_in_file(f"{filename}{ts}.out", plan)
-    
 
 
 if __name__ == "__main__":
     file_names = [
-        "a_an_example.in.txt",
+        # "a_an_example.in.txt",
         # "b_better_start_small.in.txt",
         # "c_collaboration.in.txt",
         # "d_dense_schedule.in.txt",
         # "e_exceptional_skills.in.txt",
-        # "f_find_great_mentors.in.txt"
+        "f_find_great_mentors.in.txt",
     ]
-    for f in file_names:
+    for f in reversed(file_names):
         main(f)
